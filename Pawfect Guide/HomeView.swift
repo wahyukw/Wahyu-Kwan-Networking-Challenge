@@ -11,6 +11,8 @@ struct HomeView: View {
     
     @Environment(BreedModel.self) var model
     @State var query = ""
+    @State var errorMessage = ""  // Add this to track error messages
+    @State var hasSearched = false  // Add this to track if user clicked Go
     
     var body: some View {
         
@@ -24,24 +26,46 @@ struct HomeView: View {
                         .font(.system(size: 32, weight: .heavy))
                         .foregroundColor(Color(red: 0.4, green: 0.3, blue: 0.25))
                     Image(systemName: "pawprint.fill")
-                        .resizable()
-                        .frame(width: 25, height: 25)
+                        .font(.system(size: 25))
                         .foregroundColor(.orange)
                     Spacer()
                 }.padding(.horizontal, 20)
                 
                 HStack(spacing: 12) {
                     Image(systemName: "magnifyingglass")
-                        .resizable()
-                        .scaledToFit()
-                        .frame(width: 20, height: 20)
+                        .font(.system(size: 20))
                         .foregroundColor(.gray)
                     
-                    TextField("Insert limit from 0-10...", text: $query)
+                    TextField("Insert limit from 1-10...", text: $query)
                         .keyboardType(.numberPad)
                         .font(.system(size: 16))
+                        .onChange(of: query) { oldValue, newValue in
+                            // Clear error when user types
+                            if hasSearched {
+                                errorMessage = ""
+                                hasSearched = false
+                            }
+                        }
+                    
                     Button("Go"){
-                        model.getBreeds(limit: Int(query) ?? 0)
+                        hasSearched = true
+                        
+                        // Validate input
+                        guard let limit = Int(query) else {
+                            errorMessage = "Please enter a valid number"
+                            model.breedSearch = []  // Clear results
+                            return
+                        }
+                        
+                        guard limit >= 1 && limit <= 10 else {
+                            errorMessage = "Please enter a number from 1-10"
+                            model.breedSearch = []  // Clear results
+                            return
+                        }
+                        
+                        // Valid input - clear error and fetch
+                        errorMessage = ""
+                        model.getBreeds(limit: limit)
                     }
                     .padding(.horizontal, 16)
                     .padding(.vertical, 8)
@@ -56,20 +80,53 @@ struct HomeView: View {
                 .shadow(color: Color.black.opacity(0.08), radius: 8, x: 0, y: 2)
                 .padding(.horizontal, 20)
                 
-                ScrollView(showsIndicators: false) {
-                    LazyVStack(spacing: 16){
-                        ForEach(model.breedSearch) { breedSearch in
-                            ForEach(breedSearch.breeds) { breed in
-                                ListView(
-                                    breedName: breed.name ?? "Unknown",
-                                    imageURL: breedSearch.url ?? "",
-                                    breedGroup: breed.breedGroup ?? "Mixed",
-                                    temperament: breed.temperament ?? "None"
-                                )
+                // Display logic based on state
+                if !errorMessage.isEmpty {
+                    VStack {
+                        Spacer()
+                        Text(errorMessage)
+                            .foregroundColor(.red)
+                            .font(.system(size: 16))
+                        Spacer()
+                    }
+                } else if model.breedSearch.isEmpty && hasSearched {
+                    VStack {
+                        Spacer()
+                        ProgressView()
+                            .tint(.orange)
+                        Text("Loading breeds...")
+                            .foregroundColor(.gray)
+                            .padding(.top, 8)
+                        Spacer()
+                    }
+                } else if !model.breedSearch.isEmpty {
+                    ScrollView(showsIndicators: false) {
+                        LazyVStack(spacing: 16){
+                            ForEach(model.breedSearch) { breedSearch in
+                                ForEach(breedSearch.breeds) { breed in
+                                    ListView(
+                                        breedName: breed.name ?? "Unknown",
+                                        imageURL: breedSearch.url ?? "",
+                                        breedGroup: breed.breedGroup ?? "Mixed",
+                                        temperament: breed.temperament ?? "None"
+                                    )
+                                }
                             }
                         }
+                        .padding(.top, 16)
                     }
-                    .padding(.top, 16)
+                } else {
+                    VStack {
+                        Spacer()
+                        Image(systemName: "magnifyingglass")
+                            .font(.system(size: 50))
+                            .foregroundColor(.orange.opacity(0.5))
+                        Text("Search for dog breeds")
+                            .foregroundColor(.gray)
+                            .font(.system(size: 16))
+                            .padding(.top, 8)
+                        Spacer()
+                    }
                 }
             }
         }
