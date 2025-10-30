@@ -9,9 +9,13 @@ import SwiftUI
 
 @main
 struct Pawfect_GuideApp: App {
+    
+    @State var model = BreedModel()
+    
     var body: some Scene {
         WindowGroup {
             ContentView()
+                .environment(model)
         }
     }
 }

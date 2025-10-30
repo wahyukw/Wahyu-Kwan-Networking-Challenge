@@ -9,21 +9,20 @@ import SwiftUI
 
 struct ContentView: View {
     
-    var dataService = DataService()
-    @State var breedSearch = [BreedSearch]()
+    @Environment(BreedModel.self) var model
     
     var body: some View {
+        @Bindable var model = model
+        
         VStack {
-            ForEach(breedSearch) {item in
+            ForEach(model.breedSearch) {item in
                 ForEach(item.breeds ?? []){ breed in
                     Text(breed.name ?? "Unknown")
                 }
             }
         }
-        .onAppear{
-            Task{
-                breedSearch = await dataService.breedSearch()
-            }
+        .task{
+            model.getBreeds()
         }
         .padding()
     }
@@ -31,4 +30,5 @@ struct ContentView: View {
 
 #Preview {
     ContentView()
+        .environment(BreedModel())
 }
