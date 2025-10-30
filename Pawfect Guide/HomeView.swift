@@ -57,16 +57,19 @@ struct HomeView: View {
                 .padding(.horizontal, 20)
                 
                 ScrollView(showsIndicators: false) {
-                    ForEach(model.breedSearch) { breedSearch in
-                        ForEach(breedSearch.breeds) { breed in
-                            ListView(
-                                breedName: breed.name ?? "Unknown",
-                                imageURL: breedSearch.url ?? "",
-                                breedGroup: breed.breedGroup ?? "Mixed",
-                                temperament: breed.temperament ?? "None"
-                            )
+                    LazyVStack(spacing: 16){
+                        ForEach(model.breedSearch) { breedSearch in
+                            ForEach(breedSearch.breeds) { breed in
+                                ListView(
+                                    breedName: breed.name ?? "Unknown",
+                                    imageURL: breedSearch.url ?? "",
+                                    breedGroup: breed.breedGroup ?? "Mixed",
+                                    temperament: breed.temperament ?? "None"
+                                )
+                            }
                         }
                     }
+                    .padding(.top, 16)
                 }
             }
         }

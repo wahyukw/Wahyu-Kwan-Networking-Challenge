@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct ListView: View {
-    // Pass your breed data as parameters
     let breedName: String
     let imageURL: String
     let breedGroup: String
@@ -20,32 +19,29 @@ struct ListView: View {
             AsyncImage(url: URL(string: imageURL)) { image in
                 image
                     .resizable()
-                    .scaledToFill()
-                    .frame(height: 250)
-                    .clipped()
+                    .aspectRatio(contentMode: .fill)
+                    .frame(width: UIScreen.main.bounds.width - 40, height: 300)  // Fixed size
+                    .clipped()  // CRITICAL: clips overflow
             } placeholder: {
                 ProgressView()
-                    .frame(height: 250)
+                    .frame(height: 280)
             }
             
-            // Gradient overlay for text readability
+            // Gradient overlay
             LinearGradient(
                 colors: [Color.black.opacity(0.6), Color.clear],
                 startPoint: .bottom,
                 endPoint: .center
             )
-            .frame(height: 250)
+            .frame(height: 280)
             
-            // Content overlay
+            // Content
             VStack(alignment: .leading, spacing: 12) {
-                // Breed name
                 Text(breedName)
                     .font(.system(size: 24, weight: .bold))
                     .foregroundColor(.white)
                 
-                // Bottom section with white background
                 VStack(alignment: .leading, spacing: 8) {
-                    // Breed group and arrow
                     HStack {
                         Text(breedGroup)
                             .font(.system(size: 14, weight: .semibold))
@@ -61,27 +57,25 @@ struct ListView: View {
                             .foregroundColor(.gray)
                     }
                     
-                    // Temperament tags
                     HStack(spacing: 8) {
                         ForEach(temperament.split(separator: ",").prefix(3), id: \.self) { trait in
                             Text(trait.trimmingCharacters(in: .whitespaces))
                                 .font(.system(size: 13))
                                 .foregroundColor(Color(red: 0.4, green: 0.3, blue: 0.25))
-                                .lineLimit(1)
                         }
                     }
                 }
                 .padding(16)
+                .frame(maxWidth: .infinity, alignment: .leading)  // Full width
                 .background(.white)
                 .cornerRadius(12)
             }
             .padding(16)
         }
-        .frame(height: 250)
+        .frame(height: 280)  // Fixed height only, no width
         .cornerRadius(20)
         .shadow(color: Color.orange.opacity(0.2), radius: 10, x: 0, y: 4)
-        .padding(.horizontal, 20)
-        .padding(.vertical, 8)
+        .padding(.horizontal, 20)  // Padding outside the card
     }
 }
 
