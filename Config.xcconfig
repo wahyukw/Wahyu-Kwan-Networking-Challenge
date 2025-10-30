@@ -1,0 +1,11 @@
+//
+//  Config.xcconfig
+//  Pawfect Guide
+//
+//  Created by Moladin on 30/10/2025.
+//
+
+// Configuration settings file format documentation can be found at:
+// https://developer.apple.com/documentation/xcode/adding-a-build-configuration-file-to-your-project
+
+API_KEY = live_t64luZcEv8YYI3p2IpHo5t3KhTEA72mW5lkRZISwPnM0B37l51ZgYoBCMor204ZV

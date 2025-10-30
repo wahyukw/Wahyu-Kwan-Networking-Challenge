@@ -6,13 +6,31 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		8298D8F72EB3238D002ED893 /* Config.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 8298D8F62EB3238D002ED893 /* Config.xcconfig */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXFileReference section */
 		8298D8E82EB322CF002ED893 /* Pawfect Guide.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Pawfect Guide.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		8298D8F62EB3238D002ED893 /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
 /* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		8298D8F92EB323B4002ED893 /* Exceptions for "Pawfect Guide" folder in "Pawfect Guide" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				"Pawfect-Guide-Info.plist",
+			);
+			target = 8298D8E72EB322CF002ED893 /* Pawfect Guide */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		8298D8EA2EB322CF002ED893 /* Pawfect Guide */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				8298D8F92EB323B4002ED893 /* Exceptions for "Pawfect Guide" folder in "Pawfect Guide" target */,
+			);
 			path = "Pawfect Guide";
 			sourceTree = "<group>";
 		};
@@ -32,6 +50,7 @@
 		8298D8DF2EB322CF002ED893 = {
 			isa = PBXGroup;
 			children = (
+				8298D8F62EB3238D002ED893 /* Config.xcconfig */,
 				8298D8EA2EB322CF002ED893 /* Pawfect Guide */,
 				8298D8E92EB322CF002ED893 /* Products */,
 			);
@@ -109,6 +128,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8298D8F72EB3238D002ED893 /* Config.xcconfig in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -127,6 +147,7 @@
 /* Begin XCBuildConfiguration section */
 		8298D8F12EB322D0002ED893 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8298D8F62EB3238D002ED893 /* Config.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
@@ -190,6 +211,7 @@
 		};
 		8298D8F22EB322D0002ED893 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8298D8F62EB3238D002ED893 /* Config.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
@@ -253,6 +275,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Pawfect-Guide-Info.plist";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -284,6 +307,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Pawfect-Guide-Info.plist";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
