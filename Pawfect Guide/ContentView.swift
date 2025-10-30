@@ -8,12 +8,22 @@
 import SwiftUI
 
 struct ContentView: View {
+    
+    var dataService = DataService()
+    @State var breedSearch = [BreedSearch]()
+    
     var body: some View {
         VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
+            ForEach(breedSearch) {item in
+                ForEach(item.breeds ?? []){ breed in
+                    Text(breed.name ?? "Unknown")
+                }
+            }
+        }
+        .onAppear{
+            Task{
+                breedSearch = await dataService.breedSearch()
+            }
         }
         .padding()
     }
