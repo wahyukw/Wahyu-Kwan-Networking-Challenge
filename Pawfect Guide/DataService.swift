@@ -11,9 +11,8 @@ struct DataService{
     
     let apiKey = Bundle.main.infoDictionary?["API_KEY"] as? String
     
-    var endpointUrl = "https://api.thedogapi.com/v1/images/search?limit=10&has_breeds=1"
-    
-    func breedSearch() async -> [BreedSearch] {
+    func breedSearch(limit: Int) async -> [BreedSearch] {
+        var endpointUrl = "https://api.thedogapi.com/v1/images/search?limit=\(limit)&has_breeds=1"
         
         guard apiKey != nil else {
             return [BreedSearch]()

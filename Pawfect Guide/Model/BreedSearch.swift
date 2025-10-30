@@ -12,5 +12,5 @@ struct BreedSearch: Decodable, Identifiable{
     let url: String?
     let width: Int?
     let height: Int?
-    let breeds: [Breed]?
+    let breeds: [Breed]
 }

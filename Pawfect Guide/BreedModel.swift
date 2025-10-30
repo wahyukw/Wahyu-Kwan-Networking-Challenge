@@ -12,12 +12,13 @@ import SwiftUI
 
 @Observable
 class BreedModel: NSObject{
+    
     var dataService = DataService()
     var breedSearch = [BreedSearch]()
     
-    func getBreeds () {
+    func getBreeds (limit: Int) {
         Task{
-            breedSearch = await dataService.breedSearch()
+            breedSearch = await dataService.breedSearch(limit: limit)
         }
     }
 }

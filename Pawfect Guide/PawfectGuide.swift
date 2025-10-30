@@ -15,7 +15,7 @@ struct PawfectGuide: App {
     
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            HomeView()
                 .environment(model)
                 .fullScreenCover(isPresented: $needsOnboarding) {
                     needsOnboarding = false
