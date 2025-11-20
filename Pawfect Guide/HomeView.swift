@@ -11,15 +11,17 @@ struct HomeView: View {
     
     @Environment(BreedModel.self) var model
     @State var query = ""
-    @State var errorMessage = ""  // Add this to track error messages
-    @State var hasSearched = false  // Add this to track if user clicked Go
+    @State var errorMessage = ""  // Track error messages
+    @State var hasSearched = false  // Track if user clicked Go
     
     var body: some View {
         
         ZStack{
+            //Background Color
             Rectangle()
                 .ignoresSafeArea()
                 .foregroundColor(Color(red: 250/255, green: 245/255, blue: 235/255))
+            
             VStack{
                 HStack{
                     Text("Pawfect Guide")
@@ -31,6 +33,7 @@ struct HomeView: View {
                     Spacer()
                 }.padding(.horizontal, 20)
                 
+                // Search bar
                 HStack(spacing: 12) {
                     Image(systemName: "magnifyingglass")
                         .font(.system(size: 20))
@@ -50,13 +53,13 @@ struct HomeView: View {
                     Button("Go"){
                         hasSearched = true
                         
-                        // Validate input
+                        // Validate if input is a number with Int(query)
                         guard let limit = Int(query) else {
                             errorMessage = "Please enter a valid number"
                             model.breedSearch = []  // Clear results
                             return
                         }
-                        
+                        // Validate if input is an int between 1-10
                         guard limit >= 1 && limit <= 10 else {
                             errorMessage = "Please enter a number from 1-10"
                             model.breedSearch = []  // Clear results
@@ -89,7 +92,9 @@ struct HomeView: View {
                             .font(.system(size: 16))
                         Spacer()
                     }
-                } else if model.breedSearch.isEmpty && hasSearched {
+                }
+                //Display loading while fetching data
+                else if model.breedSearch.isEmpty && hasSearched {
                     VStack {
                         Spacer()
                         ProgressView()
@@ -99,7 +104,9 @@ struct HomeView: View {
                             .padding(.top, 8)
                         Spacer()
                     }
-                } else if !model.breedSearch.isEmpty {
+                }
+                //Display list of breeds
+                else if !model.breedSearch.isEmpty {
                     ScrollView(showsIndicators: false) {
                         LazyVStack(spacing: 16){
                             ForEach(model.breedSearch) { breedSearch in
@@ -115,7 +122,9 @@ struct HomeView: View {
                         }
                         .padding(.top, 16)
                     }
-                } else {
+                }
+                //Never searched or empty state
+                else {
                     VStack {
                         Spacer()
                         Image(systemName: "magnifyingglass")
