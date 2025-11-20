@@ -275,7 +275,7 @@ This project is created for educational purposes. The Dog API is used under thei
 
 <div align="center">
 
-**Made with ❤️ and SwiftUI**
+**Made with SwiftUI**
 
 ⭐ Star this repo if you find it helpful!
 
