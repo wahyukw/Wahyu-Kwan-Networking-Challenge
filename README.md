@@ -231,8 +231,12 @@ Button("Go") {
 
 ## 📸 Screenshots
 
-*Coming soon - Screenshots will be added once the app is fully polished*
-
+<p float="left">
+  <img src="Screenshots/Onboarding%20View.png" alt="Onboarding View" height="700" />
+  <img src="Screenshots/Empty%20State.png" alt="Empty State" height="700" />
+  <img src="Screenshots/Error%20State.png" alt="Error State" height="700" />
+  <img src="Screenshots/Home%20View.png" alt="Home View" height="700" />
+</p>
 
 ---
 
