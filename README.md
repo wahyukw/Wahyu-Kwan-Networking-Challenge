@@ -25,7 +25,7 @@ Pawfect Guide is a native iOS application that helps users explore dog breeds wi
 
 ## 📝 What I Learned
 
-Building Pawfect Guide helped me master several key iOS development concepts:
+Building Pawfect Guide helped me learn several key iOS development concepts:
 
 - **Modern SwiftUI**: Using `@Observable` macro and environment objects for state management
 - **Async/Await**: Implementing modern concurrency patterns for network requests
