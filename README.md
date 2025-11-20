@@ -233,18 +233,6 @@ Button("Go") {
 
 *Coming soon - Screenshots will be added once the app is fully polished*
 
----
-
-## 🚀 Future Enhancements
-
-- [ ] Add breed detail view with comprehensive information
-- [ ] Implement favorites/bookmarking functionality
-- [ ] Add search by breed name feature
-- [ ] Filter by breed group (Sporting, Hound, Working, etc.)
-- [ ] Offline mode with cached data
-- [ ] Share breed information to social media
-- [ ] Unit tests for ViewModel and DataService
-- [ ] UI tests for critical user flows
 
 ---
 
